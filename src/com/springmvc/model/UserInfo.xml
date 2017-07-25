@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 和 接口类全路径一致 -->
+<mapper namespace="com.springmvc.dao.IUserInfoDao">
+	<!-- 结果集映射 -->
+	<resultMap type="userinfo" id="usersMap">
+       <id column="uid" property="uid"/>
+       <result column="urealname" property="urealname"/>
+       <result column="uemail" property="uemail"/>
+       <result column="username" property="username"/>
+       <result column="upassword" property="upassword"/>
+       <result column="uregtime" property="uregtime"/>
+       <result column="uimage" property="uimage"/>
+       <result column="upay" property="upay"/>
+    </resultMap>
+	<!-- 查询的配置节点 -->
+	
+	<select id="getUsers" resultMap="usersMap">
+   select * from userinfo
+   </select>
+   
+   <select id="getUserByName" parameterType="String" resultMap="usersMap">
+   select * from userinfo 
+   where username=#{username}
+   </select>
+   
+   <select id="login" parameterType="map" resultMap="usersMap">
+   select * from userinfo
+   where username=#{username} and upassword=#{upassword}
+   </select>
+   <insert id="addUser" parameterType="userinfo">
+   insert into userinfo(username,upassword)
+   values(#{username},#{upassword})
+   </insert>
+   <update id="updateUser" parameterType="userinfo">
+   update userinfo 
+   set upassword=#{upassword}
+   where username=#{username}
+   </update>
+   <delete id="deleteUser" parameterType="userinfo">
+   delete from userinfo
+   where username=#{username}
+   </delete>
+</mapper>

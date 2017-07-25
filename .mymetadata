@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="MvcPhone"
+  id="myeclipse.1499649488818"
+  context-root="/phone"
+  j2ee-spec="6.0"
+  archive="MvcPhone.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

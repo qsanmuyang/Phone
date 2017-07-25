@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springmvc.dao.IPhoneInfoDao">
+
+          <resultMap type="phoneinfo" id="phonesMap">
+          <id column="pid" property="pid" />
+          <result column="pname" property="pname" />
+          <result column="pamount" property="pamount" />
+          <result column="price" property="price" />
+          <result column="pmodel" property="pmodel" />
+          <result column="pintro" property="pintro" />
+          <result column="ptype" property="ptype" />
+          <result column="ptime" property="ptime" />
+          <result column="pimage" property="pimage" />
+          </resultMap>
+          
+          <select id="getPhones" resultMap="phonesMap">
+          select * from phoneinfo
+          </select>
+          <select id="getPhonesByPtype" resultMap="phonesMap" parameterType="String">
+          select * from phoneinfo
+          where ptype=#{ptype}
+          </select>
+          <select id="getPhoneByPid" parameterType="int" resultType="phoneinfo">
+          select * from phoneinfo
+          where pid=#{pid}
+          </select>
+          
+          <insert id="addPhone" parameterType="phoneinfo">
+          insert into phoneinfo(pname,pamount,price,pmodel,pintro,ptype,ptime,pimage)
+          values(#{pname},#{pamount},#{price},#{pmodel},#{pintro},#{ptype},#{ptime},#{pimage})
+          </insert>
+          
+          <update id="updatePhone" parameterType="phoneinfo">
+          update phoneinfo
+          set pname=#{pname},pamount=#{pamount},price=#{price},pmodel=#{pmodel},pintro=#{pintro},
+          ptype=#{ptype},ptime=#{ptime},pimage=#{pimage}
+          where pid=#{pid}
+          </update>
+          
+          <delete id="deletePhone" parameterType="int">
+          delete from phoneinfo
+          where pid=#{pid}
+          </delete>
+          
+</mapper>
